@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <title>Contact Us</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'admin/css/style.css' %}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>    
+    <body>
+        {% load static %}
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="wrapper">
+                            <div class="row no-gutters mb-5">
+                                <div class="col-md-7">
+                                    <div class="contact-wrap w-100 p-md-5 p-4">
+                                        <h3 class="mb-4">Contact Us</h3>
+                                        <div id="form-message-warning" class="mb-4"></div>
+                                        <div id="form-message-success" class="mb-4">Your message was sent, thank you!</div>
+                                        <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="name">Full Name</label>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="name"
+                                                               id="name"
+                                                               placeholder="Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="email">Email Address</label>
+                                                        <input type="email"
+                                                               class="form-control"
+                                                               name="email"
+                                                               id="email"
+                                                               placeholder="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">Subject</label>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="subject"
+                                                               id="subject"
+                                                               placeholder="Subject">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="#">Message</label>
+                                                        <textarea name="message"
+                                                                  class="form-control"
+                                                                  id="message"
+                                                                  cols="30"
+                                                                  rows="4"
+                                                                  placeholder="Message">
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                                {% csrf_token %}
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Send Message" class="btn btn-primary">
+                                                        <div class="submitting"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 d-flex align-items-stretch">
+                                    <div id="map">
+										<svg class="bd-placeholder-img card-img-top" width="100%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+											<title>Placeholder</title>
+											<rect width="100%" height="100%" fill="#868e96"></rect>
+											<div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 550px">
+												<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.8609050213254!2d-73.9997819186036!3d40.74308608746747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bb65ffb4b7%3A0xfb6f9cef91401b93!2sEvents%20Coverage%20and%20Photography!5e0!3m2!1sen!2sph!4v1694863386084!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+											</div>
+										</svg>
+									</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-map-marker"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>
+                                                <span>Address:</span> 198 W 21st St #721, New York, NY 10010, United States
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-phone"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>
+                                                <span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-paper-plane"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>
+                                                <span>Email:</span> <a href="mailto:info@yoursite.com">cardealership@gmail.com</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dbox w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-globe"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>
+                                                <span>Website</span> <a href="#">cardealership.com</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% load static %}
+        <script src="{% static 'contact/js/jquery.min.js' %}"></script>
+        <script src="{% static 'contact/js/popper.js' %}"></script>
+        <script src="{% static 'contact/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'contact/js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'contact/js/main.js' %}"></script>
+    </body>
+</html>
