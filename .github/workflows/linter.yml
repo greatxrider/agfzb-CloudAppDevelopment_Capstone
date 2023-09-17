@@ -1,4 +1,4 @@
-name: 'Lint Code'
+name: Lint Code
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs: # list of things to do
         run: npm run lint
         working-directory: functions/sample/nodejs
     
-
+        
   lint_function_python:
     name: Linting Python Function 
     runs-on: ubuntu-latest 
