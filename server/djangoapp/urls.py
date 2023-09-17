@@ -1,3 +1,4 @@
+"""this file defines URL patterns for djangoapp"""
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
@@ -8,7 +9,7 @@ urlpatterns = [
     # route is a string contains a URL pattern
     # view refers to the view function
     # name the URL
-    
+   
     path(route='', view=views.get_dealerships, name='index'),
     # path for about view
     path(route = 'djangoapp/about', view = views.about, name = 'about'),
@@ -17,7 +18,7 @@ urlpatterns = [
     # path for registration
     path("registration/", views.registration_request, name="registration"),
 
-    # path for login   
+    # path for login
     path("login/", views.login_request, name="login"),
     # path for logout
     path("logout/", views.logout_request, name="logout"),
