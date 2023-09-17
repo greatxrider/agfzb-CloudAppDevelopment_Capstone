@@ -19,30 +19,115 @@
             .jumbotron {
                 margin-bottom: 0px;
             }
-            .navbar-nav {
-                gap: 5rem;
+
+            .navbar {
+                border-bottom: thin solid lightgray;
+                margin-bottom: 20px;
+            }
+
+            #logo {
+                width: 200px;
+            }
+            
+            .nav-item {
+                font-size: 20px;
+            }
+
+            .btn {
+                transition: background-color 0.5s ease;
+            }
+
+            .btn:hover {
+                background-color: lightgray;
             }
         </style>
     </head>
     <body>
-        <div class="jumbotron text-center">
-            <h1>DEALERSHIP REVIEW WEBSITE</h1>
-        </div>
+        {% load static %}
         <!--Add a nav bar here -->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark d-flex">
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <!-- Brand/logo -->
-            <a class="navbar-brand" href="#">Dealership Review</a>
+            <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
+                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo">
+            </a>
             <!-- Links -->
-
-            <ul class="navbar-nav just d-flex ml-auto mr-5">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                </li>
+            <ul class="nav justify-content-end">
+                <div class="p-2">
+                    <li class="nav-item">
+                        <a type="button" class="btn" style="bg-color: white; border-radius:0;" href="{% url 'djangoapp:about' %}">About Us</a>
+                    </li>
+                </div>
+                <div class="p-2">
+                    <li class="nav-item">
+                        <a type="button" class="btn" style="border-radius:0; "href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </li>
+                </div>
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li>
+                        <a class="btn btn-secondary" href="#">{{ user.first_name }}({{ user.username }})</a>
+                        <a class="btn btn-danger" href="{% url 'djangoapp:logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <form class="form-inline"
+                              action="{% url 'djangoapp:login' %}"
+                              method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Username"
+                                       name="username">
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Username"
+                                       name="psw">
+                                <button class="btn btn-secondary" type="submit">Login</button>
+                                <a class="btn btn-info" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                            </div>
+                        </form>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
         <!--Add a dealer table here -->
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <table
+                        id="table"
+                        data-toggle="table"
+                        data-search="true"
+                        data-filter-control="true"
+                        data-show-export="true"
+                        data-click-to-select="true"
+                        data-toolbar="#toolbar"
+                        data-show-columns="true"
+                        data-show-filter="true"
+                        data-show-refresh="true"
+                        data-show-fullscreen="true"
+                        data-show-pagination-switch="true"
+                        data-pagination="true"
+                        data-page-list="[10, 25, 50, 100, all]"
+                        data-show-footer="true"
+                        data-side-pagination="server">
+                        {% comment %} data-url="{% url 'djangoapp:dealer_reviews' %}"> {% endcomment %}
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-filter-control="input" data-sortable="true">ID</th>
+                                <th data-field="name" data-filter-control="input" data-sortable="true">Dealer Name</th>
+                                <th data-field="city" data-filter-control="input" data-sortable="true">City</th>
+                                <th data-field="state" data-filter-control="input" data-sortable="true">State</th>
+                                <th data-field="zip" data-filter-control="input" data-sortable="true">Zip</th>
+                                <th data-field="overall_rating" data-filter-control="input" data-sortable="true">Overall Rating</th>
+                                <th data-field="count" data-filter-control="input" data-sortable="true">Review Count</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

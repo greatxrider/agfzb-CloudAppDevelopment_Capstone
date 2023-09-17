@@ -5,10 +5,38 @@
         <title>Contact Us</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{% static 'admin/css/style.css' %}" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .jumbotron {
+                margin-bottom: 0px;
+            }
+
+            .navbar {
+                border-bottom: thin solid lightgray;
+                margin-bottom: 20px;
+            }
+
+            #logo {
+                width: 200px;
+            }
+            
+            .nav-item {
+                font-size: 20px;
+            }
+        </style>
     </head>    
     <body>
+        {% load static %}
+        <!--Add a nav bar here -->
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+            <!-- Brand/logo -->
+            <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
+                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo">
+            </a>
+        </nav>
         {% load static %}
         <section class="ftco-section">
             <div class="container">

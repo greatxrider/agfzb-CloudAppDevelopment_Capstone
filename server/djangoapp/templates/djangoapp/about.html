@@ -18,9 +18,78 @@
             .jumbotron {
                 margin-bottom: 0px;
             }
+
+            .navbar {
+                border-bottom: thin solid lightgray;
+            }
+
+            #logo {
+                width: 200px;
+            }
+            
+            .nav-item {
+                font-size: 20px;
+            }
+
+            .btn {
+                transition: background-color 0.5s ease;
+            }
+
+            .btn:hover {
+                background-color: lightgray;
+            }
         </style>
     </head>
     <body>
+        {% load static %}
+        <!--Add a nav bar here -->
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+            <!-- Brand/logo -->
+            <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
+                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo">
+            </a>
+            <!-- Links -->
+            <ul class="nav justify-content-end">
+                <div class="p-2">
+                    <li class="nav-item">
+                        <a type="button" class="btn" style="bg-color: white" href="{% url 'djangoapp:about' %}">About Us</a>
+                    </li>
+                </div>
+                <div class="p-2">
+                    <li class="nav-item">
+                        <a type="button" class="btn" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </li>
+                </div>
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li>
+                        <a class="btn btn-secondary" href="#">{{ user.first_name }}({{ user.username }})</a>
+                        <a class="btn btn-danger" href="{% url 'djangoapp:logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <form class="form-inline"
+                              action="{% url 'djangoapp:login' %}"
+                              method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Username"
+                                       name="username">
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Username"
+                                       name="psw">
+                                <button class="btn btn-secondary" type="submit">Login</button>
+                                <a class="btn btn-info" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                            </div>
+                        </form>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
         {% load static %}
         <div class="jumbotron">
             <h1>Welcome To Best Cars Dealership</h1>
