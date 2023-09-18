@@ -3,9 +3,9 @@
 Returns:
     List: List of reviews for the given dealership
 """
+import requests
 from cloudant.client import Cloudant
 from cloudant.error import CloudantException
-import requests
 
 
 def main(param_dict):
@@ -19,6 +19,7 @@ def main(param_dict):
     """
 
     try:
+        #The following code authenticates with IBM Cloudant service using the username and api key.
         client = Cloudant.iam(
             account_name=param_dict["COUCH_USERNAME"],
             api_key=param_dict["IAM_API_KEY"],
@@ -31,5 +32,5 @@ def main(param_dict):
     except (requests.exceptions.RequestException, ConnectionResetError) as err:
         print("connection error")
         return {"error": err}
-
+    #The following code retrieves all the databases in your account
     return {"dbs": client.all_dbs()}
