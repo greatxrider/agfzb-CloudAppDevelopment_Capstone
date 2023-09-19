@@ -55,6 +55,11 @@
                         <a type="button" class="btn" href="{% url 'djangoapp:contact' %}">Contact Us</a>
                     </li>
                 </div>
+                <div class="p-2">
+                    <li class="nav-item">
+                        <a type="button" class="btn" style="border-radius:0; "href="{% url 'djangoapp:dealer_details' dealer_id=15 %}">Reviews</a>
+                    </li>
+                </div>
             </ul>
             <ul class="nav navbar-nav ml-auto">
                 {% if user.is_authenticated %}

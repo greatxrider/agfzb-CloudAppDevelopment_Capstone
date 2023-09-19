@@ -46,7 +46,7 @@
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <!-- Brand/logo -->
             <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
-                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo" width="200px" height="0px">
+                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo" width="200px" height="80px">
             </a>
             <!-- Links -->
             <ul class="nav justify-content-end">
@@ -58,6 +58,11 @@
                 <div class="p-2">
                     <li class="nav-item">
                         <a type="button" class="btn" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    </li>
+                </div>
+                <div class="p-2">
+                    <li class="nav-item">
+                        <a type="button" class="btn" style="border-radius:0; "href="{% url 'djangoapp:dealer_details' dealer_id=15 %}">Reviews</a>
                     </li>
                 </div>
             </ul>
@@ -80,7 +85,7 @@
                                        name="username">
                                 <input type="password"
                                        class="form-control"
-                                       placeholder="Username"
+                                       placeholder="Password"
                                        name="psw">
                                 <button class="btn btn-secondary" type="submit">Login</button>
                                 <a class="btn btn-info" href="{% url 'djangoapp:registration' %}">Sign Up</a>
