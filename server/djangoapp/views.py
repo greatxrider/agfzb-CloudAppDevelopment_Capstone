@@ -100,7 +100,7 @@ def get_dealerships(request):
     """this get_dealerships method"""
     context = {}
     if request.method == "GET":
-        url = "http://127.0.0.1:3000/dealerships/get"
+        url = "https://nodeforcarproj-imq6imauja-uc.a.run.app/dealerships/get"
         # Get dealers from the URL
         dealerships = restapis.get_dealers_from_cf(url, api_key='aa1cPksgn9BNNMDnmfXSNi3Zw1uVVGBW96LwiOhIhS9p')
         # Concat all dealer's short name
@@ -118,7 +118,7 @@ def get_dealer_details(request, dealer_id):
     """this get_dealer_details method"""
     context = {}
     if request.method == "GET":
-        url = f"http://127.0.0.1:5000/api/get_reviews?id={dealer_id}"
+        url = f"https://reviewforcarproj-imq6imauja-uc.a.run.app/api/get_reviews?id={dealer_id}"
         # Get dealers from the URL using the id
         api_key = 'aa1cPksgn9BNNMDnmfXSNi3Zw1uVVGBW96LwiOhIhS9p'
         reviews = restapis.get_dealer_by_id_from_cf(url, dealerId=dealer_id, api_key=api_key)
@@ -131,7 +131,7 @@ def get_dealer_details(request, dealer_id):
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
     """this add_review method"""
-    url = "http://127.0.0.1:3000/dealerships/get"
+    url = "https://nodeforcarproj-imq6imauja-uc.a.run.app/dealerships/get"
     context = {}
     review = {}
     json_payload = {}
@@ -151,7 +151,7 @@ def add_review(request, dealer_id):
             return render(request, "djangoapp/add_review.html", context)
 
         elif request.method == "POST":
-            url = "http://127.0.0.1:5000/api/post_review"
+            url = "https://reviewforcarproj-imq6imauja-uc.a.run.app/api/post_review"
             review["time"] = datetime.utcnow().isoformat()
             review["id"] = random.randint(1, 1000)
             review["name"] = user.username
