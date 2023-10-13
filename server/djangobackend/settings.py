@@ -28,7 +28,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "agfzb-cloudappdevelopment-capstone-imq6imauja-uc.a.run.app"]
 
 
 # Application definition
