@@ -19,11 +19,9 @@ RUN pip3 install -r requirements.txt
 # Copy the rest of the files
 COPY . $APP
 
-EXPOSE 443
-
 # RUN chmod +x /app/entrypoint.sh
 RUN dos2unix /app/entrypoint.sh
 
 ENTRYPOINT ["/bin/bash","/app/entrypoint.sh"]
 
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "--workers", "3", "djangobackend.wsgi"]
+CMD ["gunicorn", "--bind", ":80", "--workers", "3", "djangobackend.wsgi"]
