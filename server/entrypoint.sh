@@ -14,7 +14,4 @@ fi
 echo "Making migrations and migrating the database. "
 python manage.py makemigrations main --noinput
 python manage.py migrate --noinput
-cd functions
 exec "$@"
-node get-dealership.js
-python reviews.py
