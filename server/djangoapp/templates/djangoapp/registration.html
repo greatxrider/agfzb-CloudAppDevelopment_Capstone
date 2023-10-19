@@ -1,116 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
-    <title>Registration</title>
     <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %} ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
     <meta name="description" content="Your page's concise summary goes here.">
-    <meta name="keywords" content="keyword1, keyword2, keyword3"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="keywords" content="keyword1, keyword2, keyword3">
+    <title>WheelsTalk America</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- CSS Files -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/now-ui-kit.css' %}" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
     <style>
-        .jumbotron {
-            margin-bottom: 0px;
-        }
-
-        .navbar {
-            border-bottom: thin solid lightgray;
-            margin-bottom: 20px;
-        }
-
-        #logo {
-            width: 200px;
-        }
-        
-        .nav-item {
-            font-size: 20px;
-        }
-
-        .btn {
-            transition: background-color 0.5s ease;
-        }
-
-        .btn:hover {
-            background-color: lightgray;
+        /* Apply styles to the placeholder text */
+        .placeholder {
+            color: #FF0000;
+            /* Change the color to red */
         }
     </style>
 </head>
-<body>
+
+<body class="index-page sidebar-collapse">
     {% load static %}
-        <!--Add a nav bar here -->
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
-            <!-- Brand/logo -->
-            <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
-                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo" width="200px" height="0px">
-            </a>
-            <!-- Links -->
-            <ul class="nav justify-content-end">
-                <div class="p-2">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg btn-primary fixed-top navbar-transparent " color-on-scroll="400">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
+                    <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px" height="auto">
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar top-bar"></span>
+                    <span class="navbar-toggler-bar middle-bar"></span>
+                    <span class="navbar-toggler-bar bottom-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a type="button" class="btn" style="bg-color: white" href="{% url 'djangoapp:about' %}">About Us</a>
+                        <a class="nav-link" href="{% url 'djangoapp:index' %}">Home</a>
                     </li>
-                </div>
-                <div class="p-2">
                     <li class="nav-item">
-                        <a type="button" class="btn" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                        <a class="nav-link" href="#">About Us</a>
                     </li>
-                </div>
-                <div class="p-2">
                     <li class="nav-item">
-                        <a type="button" class="btn" style="border-radius:0; "href="{% url 'djangoapp:dealer_details' dealer_id=15 %}">Reviews</a>
+                        <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>
                     </li>
-                </div>
-            </ul>
-            <ul class="nav navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <li>
-                        <a class="btn btn-secondary" href="#">{{ user.first_name }}({{ user.username }})</a>
-                        <a class="btn btn-danger" href="{% url 'djangoapp:logout' %}">Logout</a>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation"
+                data-nav-image="{% static 'assets/img/blurred-image-1.jpg' %}">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">
+                            <i class="now-ui-icons business_badge"></i>
+                            <p>Login</p>
+                        </a>
                     </li>
-                {% else %}
-                    <li>
-                        <form class="form-inline"
-                              action="{% url 'djangoapp:login' %}"
-                              method="post">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Username"
-                                       name="username">
-                                <input type="password"
-                                       class="form-control"
-                                       placeholder="Username"
-                                       name="psw">
-                                <button class="btn btn-secondary" type="submit">Login</button>
-                            </div>
-                        </form>
+                    <li class="nav-item active">
+                        <a href="{% url 'djangoapp:registration' %}" class="nav-link">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>Sign-Up <span class="sr-only">(current)</span></p>
+                        </a>
                     </li>
-                {% endif %}
-            </ul>
-        </nav>
-    <!-- Stylize Registration form -->
-        <form action="{% url 'djangoapp:registration' %}" method="post">
-            <div class="container"> <!--Style root div with .container class -->
-                {% csrf_token %}
-                <h1>Sign Up</h1>
-                <hr>
-                <div class="form-group"> <!--Style second div with .form-group class -->
-                    <label for="username"><b>User Name</b></label>
-                    <input type="text" class="form-control" placeholder="Enter User Name: " name="username" required> <!--Style input with .form-control class -->
-                    <label for="firstname"><b>First Name</b></label>
-                    <input type="text" class="form-control" placeholder="Enter First Name: " name="firstname" required> <!--Style input with .form-control class -->
-                    <label for="lastname"><b>Last Name</b></label>
-                    <input type="text" class="form-control" placeholder="Enter Last Name: " name="lastname" required> <!--Style input with .form-control class -->
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" class="form-control" placeholder="Enter Password: " name="psw" required> <!--Style input with .form-control class -->
-                    {% if message %}
-                    <div class="alert alert-warning"> <!--Style the message paragraph with .alert and .alert-warning class -->
-                        {{ message }}
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://www.linkedin.com/in/jephmari/"
+                            target="_blank">
+                            <i class="fab fa-twitter"></i>
+                            <p class="d-lg-none d-xl-none">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.linkedin.com/in/jephmari/"
+                            target="_blank">
+                            <i class="fab fa-facebook-square"></i>
+                            <p class="d-lg-none d-xl-none">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
+                            href="https://www.linkedin.com/in/jephmari/" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <p class="d-lg-none d-xl-none">Instagram</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Sart Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-background-color="orange">
+                <form class="form" method="post" action="{% url 'djangoapp:login' %}">
+                    {% csrf_token %}
+                    <div class="card-header text-center">
+                        <h3 class="card-title title-up">Log In</h3>
+                        <div class="social-line">
+                            <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px"
+                                height="auto">
+                        </div>
                     </div>
-                    {% endif %}
-                    <button class="btn btn-secondary mt-1" type="submit">Sign up</button> <!--Style button with .btn and .btn-primary class -->
+                    <div class="card-body">
+                        <div class="input-group no-border">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons users_single-02"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Username..." name="username">
+                        </div>
+                        <div class="input-group no-border">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons text_caps-small"></i>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Password..." name="psw">
+                        </div>
+                        <p>{{ message }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-neutral btn-round btn-lg" type="submit">Login</button>
+                        <div class="pull-left">
+                            <h6>
+                                <a href="{% url 'djangoapp:registration' %}" class="link">Create Account</a>
+                            </h6>
+                        </div>
+                        <div class="pull-right">
+                            <h6>
+                                <a href="#pablo" class="link">Need Help?</a>
+                            </h6>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--  End Modal -->
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image" style="background-image:url('{% static '/assets/img/signup.jpg' %}');"></div>
+        <div class="content">
+            <div class="container">
+                <div class="col-md-4 ml-auto mr-auto">
+                    <div class="card card-signup card-plain" data-background-color="white">
+                        <!-- Start Signup Form -->
+                        <form class="form" method="post" action="{% url 'djangoapp:registration' %}">
+                            {% csrf_token %}
+                            <div class="card-header text-center">
+                                <div class="logo-container">
+                                    <img src="{% static 'logo-no-background.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="form-group card-body">
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="now-ui-icons users_single-02"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control text-white" placeholder="Enter Username: "
+                                        name="username" required>
+                                </div>
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control text-white" placeholder="Enter First Name: "
+                                        name="firstname" required>
+                                </div>
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="now-ui-icons text_caps-small"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" placeholder="Last Name..." class="form-control text-white"
+                                        placeholder="Enter Last Name: " name="lastname" required>
+                                </div>
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="now-ui-icons objects_key-25"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" class="form-control text-white"
+                                        placeholder="Enter Password: " name="psw" required>
+                                </div>
+                                {% if message %}
+                                <div class="alert alert-warning">
+                                    <!--Style the message paragraph with .alert and .alert-warning class -->
+                                    {{ message }}
+                                </div>
+                                {% endif %}
+                                <div class="card-footer text-center">
+                                    <button class="btn btn-primary btn-round btn-lg btn-block" type="submit">Get
+                                        Started</button>
+                                </div>
+                        </form>
+                        <!-- End Signup Form -->
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </div>
+    <footer class="footer footer-default">
+        <div class=" container ">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'djangoapp:index' %}">
+                            <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px"
+                                height="auto">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'djangoapp:about' %}">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'djangoapp:contact' %}">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright mt-2" id="copyright">
+                &copy;
+                <script>
+                    document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                </script>, Copyright:
+                <a href="https://www.linkedin.com/in/jephmari/" target="_blank">WheelsTalkAmerica.com</a>. Coded by
+                <a href="https://www.linkedin.com/in/jephmari/" target="_blank">WTA Group</a>.
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="{% static 'assets/js/core/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/popper.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="{% static 'assets/js/plugins/bootstrap-switch.js' %}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{% static 'assets/js/plugins/nouislider.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="{% static 'assets/js/plugins/bootstrap-datepicker.js' %}" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{% static 'assets/js/now-ui-kit.js' %}" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            // the body of this function is in assets/js/now-ui-kit.js
+            nowuiKit.initSliders();
+        });
+
+        function scrollToDownload() {
+
+            if ($('.section-download').length != 0) {
+                $("html, body").animate({
+                    scrollTop: $('.section-download').offset().top
+                }, 1000);
+            }
+        }
+    </script>
 </body>
+
 </html>

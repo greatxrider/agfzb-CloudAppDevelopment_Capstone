@@ -6,25 +6,6 @@ from requests.auth import HTTPBasicAuth
 from .models import CarDealer, DealerReview
 
 # Create a `get_request` to make HTTP GET requests
-# e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
-#                                     auth=HTTPBasicAuth('apikey', api_key))
-# def get_request(url, **kwargs):
-#     """the get_request method"""
-#     print(kwargs)
-#     print(f"GET from { url } ")
-#     try:
-#         # Call get method of requests library with URL and parameters
-#         response = requests.get(url, headers={'Content-Type': 'application/json'},
-#                                     params=kwargs, timeout=10)
-#         # If the response was successful, no Exception will be raised
-#     except requests.exceptions.RequestException as err:
-#         # If any error occurs
-#         print(f"Network exception occurred: { err }")
-#     status_code = response.status_code
-#     print(f"With status { status_code }")
-#     json_data = json.loads(response.text)
-#     return json_data
-
 def get_request(url, api_key, **kwargs):
     """the get_request method"""
     print(kwargs)
@@ -51,28 +32,6 @@ def get_request(url, api_key, **kwargs):
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
-# def post_request(url, json_payload, **kwargs):
-#     """the post_request method"""
-#     print(f"SULAYANA NATOG PRINT AND JSON {json_payload}")
-#     print(kwargs)
-#     print(f"POST to {url}")
-#     try:
-#         # Call post method of requests library with URL and parameters
-#         response = requests.post(url, params=kwargs, json=json_payload)
-#         print(response)
-#         # If the response was successful, no Exception will be raised
-#     except requests.exceptions.RequestException as err:
-#         # If any error occurs
-#         print("WALA NAA GYUY ERROR SA TRY")
-#         print(f"Network exception occurred: {err}")
-#         return None  # You might want to handle the error more gracefully
-
-#     status_code = response.status_code
-#     print(f"With status {status_code}")
-#     json_data = response.json()  # Use .json() to parse the JSON response
-#     print(f"MURAG NAA DIRI ANG SIPYAT")
-#     print(json_data)
-#     return json_data
 def post_request(url, json_payload, **kwargs):
     """Send an HTTP POST request with JSON payload."""
     try:
@@ -118,31 +77,6 @@ def get_dealers_from_cf(url, api_key, **kwargs):
             results.append(dealer_obj)
     return results
 
-
-# Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-# def get_dealer_by_id_from_cf(url, dealerId):
-# - Call get_request() with specified arguments
-# - Parse JSON results into a DealerView object list
-# def get_dealer_by_id_from_cf(url, dealerId):
-#     """this gets dealers by id from a cloud function"""
-#     results = []
-#     # Call get_request with a URL parameter
-#     json_result = get_request(url, dealerId=dealerId)
-#     if json_result:
-#         # Get the row list in JSON as dealers
-#         dealers = json_result
-#         # For each dealer object
-#         for dealer in dealers:
-#             # Get its content in `doc` object
-#             dealer_doc = dealer
-#             # Create a CarDealer object with values in `doc` object
-#             dealer_obj = DealerReview(dealership=dealer_doc["dealership"], name=dealer_doc["name"],
-#                                       purchase=dealer_doc["purchase"],
-#                                       review=dealer_doc["review"], purchase_date=dealer_doc["purchase_date"],
-#                                       car_make=dealer_doc["car_make"], car_model=dealer_doc["car_model"],
-#                                       car_year=dealer_doc["car_year"], id=dealer_doc["id"])
-#             results.append(dealer_obj)
-#     return results
 def get_dealer_by_id_from_cf(url, dealerId, api_key):
     """This gets dealers by id from a cloud function and assigns sentiment to reviews."""
     results = []
@@ -172,10 +106,17 @@ def get_dealer_by_id_from_cf(url, dealerId, api_key):
                 id=dealer_doc["id"]
             )
             # Analyze sentiment for the review and assign it to the sentiment attribute
-            if api_key:
-                sentiment_result = analyze_review_sentiments(dealer_obj.review, api_key=api_key)
-                dealer_obj.sentiment = sentiment_result['keywords'][0]['sentiment']['label']
-            results.append(dealer_obj)
+            try:
+                if api_key:
+                    sentiment_result = analyze_review_sentiments(dealer_obj.review, api_key=api_key)
+                    dealer_obj.sentiment = sentiment_result['keywords'][0]['sentiment']['label']
+                results.append(dealer_obj)
+            except Exception as e:
+                print(e)
+                if api_key:
+                    sentiment_result = analyze_review_sentiments(dealer_obj.review, api_key=api_key)
+                    dealer_obj.sentiment = 'neutral'
+                results.append(dealer_obj)
     return results
 
 
@@ -225,3 +166,4 @@ def analyze_review_sentiments(dealerreview, api_key):
         return analysis_result
     else:
         print(f"Request failed with status code {response.status_code}: {response.text}")
+        
