@@ -1,138 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% load static %}
-        <meta charset="UTF-8">
-        <meta name="description" content="Your page's concise summary goes here.">
-        <meta name="keywords" content="keyword1, keyword2, keyword3">
-        <title>Dealership Review</title>
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css"
-              rel="stylesheet">
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
-        <style>
-            .jumbotron {
-                margin-bottom: 0px;
-            }
 
-            .navbar {
-                border-bottom: thin solid lightgray;
-                margin-bottom: 20px;
-            }
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %} ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Your page's concise summary goes here.">
+    <meta name="keywords" content="keyword1, keyword2, keyword3">
+    <title>WheelsTalk America</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <!--     Fonts and icons     -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script
+        src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
 
-            #logo {
-                width: 200px;
-            }
-            
-            .nav-item {
-                font-size: 20px;
-            }
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- CSS Files -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/now-ui-kit.css' %}" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script
+        src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    <style>
+        body {
+            background: #C02425; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #F0CB35, #C02425); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #F0CB35, #C02425); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
 
-            .btn {
-                transition: background-color 0.5s ease;
-            }
+        #imageswall {
+            background: #C02425; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #F0CB35, #C02425); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #F0CB35, #C02425); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        
+    </style>
+</head>
 
-            .btn:hover {
-                background-color: lightgray;
-            }
-        </style>
-    </head>
-    <body>
-        {% load static %}
-        <!--Add a nav bar here -->
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
-            <!-- Brand/logo -->
-            <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
-                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo" width="200px" height="80px">
-            </a>
-            <!-- Links -->
-            <ul class="nav justify-content-end">
-                <div class="p-2">
-                    <li class="nav-item">
-                        <a type="button" class="btn" style="bg-color: white; border-radius:0;" href="{% url 'djangoapp:about' %}">About Us</a>
-                    </li>
-                </div>
-                <div class="p-2">
-                    <li class="nav-item">
-                        <a type="button" class="btn" style="border-radius:0; "href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                    </li>
-                </div>
-                <div class="p-2">
-                    <li class="nav-item">
-                        <a type="button" class="btn" style="border-radius:0; "href="{% url 'djangoapp:dealer_details' dealer_id=15 %}">Reviews</a>
-                    </li>
-                </div>
-            </ul>
-            <ul class="nav navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <li>
-                        <a class="btn btn-secondary" href="#">{{ user.first_name }}({{ user.username }})</a>
-                        <a class="btn btn-danger" href="{% url 'djangoapp:logout' %}">Logout</a>
-                    </li>
-                {% else %}
-                    <li>
-                        <form class="form-inline"
-                              action="{% url 'djangoapp:login' %}"
-                              method="post">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Username"
-                                       name="username">
-                                <input type="password"
-                                       class="form-control"
-                                       placeholder="Password"
-                                       name="psw">
-                                <button class="btn btn-secondary" type="submit">Login</button>
-                                <a class="btn btn-info" href="{% url 'djangoapp:registration' %}">Sign Up</a>
-                            </div>
-                        </form>
-                    </li>
-                {% endif %}
-            </ul>
-        </nav>
-        <!--Add a dealer table here -->
+<body class="index-page sidebar-collapse" style="background-color: rgb(248, 243, 236);">
+    {% load static %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg btn-primary fixed-top navbar-transparent " color-on-scroll="400">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <table class="table" id="table" data-filter-control="true">
-                        <thead>
-                            <tr>
-                                <th data-field="id">ID</th>
-                                <th data-field="name">Dealer Name</th>
-                                <th data-field="city">City</th>
-                                <th data-field="address">Address</th>
-                                <th data-field="zip">Zip</th>
-                                <th data-field="state" data-filter-control="select">State</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for dealer in dealerships %}
-                                <tr>
-                                    <td>{{ dealer.id }}</td>
-                                    {% comment %} <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{ dealer.full_name }}</a></td> {% endcomment %}
-                                    <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{ dealer.full_name }}</a></td>
-                                    <td>{{ dealer.city }}</td>
-                                    <td>{{ dealer.address }}</td>
-                                    <td>{{ dealer.zip }}</td>
-                                    <td>{{ dealer.state }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+            <div class="navbar-translate">
+                <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
+                    <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px" height="auto">
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar top-bar"></span>
+                    <span class="navbar-toggler-bar middle-bar"></span>
+                    <span class="navbar-toggler-bar bottom-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation"
+                data-nav-image="{% static 'assets/img/blurred-image-1.jpg' %}">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>
+                                {{ user.first_name }}({{ user.username }})
+                            </p>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="#"
+                            target="_blank">
+                            <i class="fab fa-twitter"></i>
+                            <p class="d-lg-none d-xl-none">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="#"
+                            target="_blank">
+                            <i class="fab fa-facebook-square"></i>
+                            <p class="d-lg-none d-xl-none">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
+                            href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <p class="d-lg-none d-xl-none">Instagram</p>
+                        </a>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">
+                            <i class="now-ui-icons business_badge"></i>
+                            <p>Login</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'djangoapp:registration' %}" class="nav-link">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>Sign-Up</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="#"
+                            target="_blank">
+                            <i class="fab fa-twitter"></i>
+                            <p class="d-lg-none d-xl-none">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="#"
+                            target="_blank">
+                            <i class="fab fa-facebook-square"></i>
+                            <p class="d-lg-none d-xl-none">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
+                            href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <p class="d-lg-none d-xl-none">Instagram</p>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    <!-- Sart Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-background-color="orange">
+                <form class="form" method="post" action="{% url 'djangoapp:login' %}">
+                    {% csrf_token %}
+                    <div class="card-header text-center">
+                        <h3 class="card-title title-up">Log In</h3>
+                        <div class="social-line">
+                            <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px"
+                                height="auto">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group no-border">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons users_single-02"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Username..." name="username">
+                        </div>
+                        <div class="input-group no-border">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons text_caps-small"></i>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Password..." name="psw">
+                        </div>
+                        <p>{{ message }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-neutral btn-round btn-lg" type="submit">Login</button>
+                        <div class="pull-left">
+                            <h6>
+                                <a href="{% url 'djangoapp:registration' %}" class="link">Create Account</a>
+                            </h6>
+                        </div>
+                        <div class="pull-right">
+                            <h6>
+                                <a href="#pablo" class="link">Need Help?</a>
+                            </h6>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--  End Modal -->
+    <!-- Start Wrapper -->
+    <div class="wrapper">
+        <div class="page-header clear-filter" filter-color="orange">
+            <div class="page-header-image" data-parallax="true"
+                style="background-image: url('{% static '/assets/img/car-header.jpg' %}');">
+            </div>
+            <div class="container">
+                <div class="content-center brand">
+                    <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="600px" height="auto">
+                    <h1 class="h1-seo font-weight-bold">Explore America's Dealerships</h1>
+                    <h3>Your Ultimate Source for Car Reviews and the Best Deals at Wheels Talk America</h3>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+    <!-- End Wrapper -->
+    <div class="main mt-auto" style="color:gainsboro">
+        <div class="section section-images" id="imageswall" style="background-color: rgb(248, 243, 236);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="hero-images-container">
+                            <img src="{% static '/assets/img/bmw.png' %}" alt="">
+                        </div>
+                        <div class="hero-images-container-1">
+                            <img src="{% static '/assets/img/lambo.png' %}" alt="">
+                        </div>
+                        <div class="hero-images-container-2">
+                            <h1 class="h1-seo font-weight-bold" style="color:wheat">Central Dealership Database.</h1>
+                        </div>
+                    </div>
+                </div>           
+                <div class="container col-xxl-8 px-4">
+                    <div class="row flex-lg-row-reverse align-items-center g-5">
+                      <div class="col-12 col-sm-8 col-lg-6">
+                        <img src="{% static '/assets/img/market-survey.jpg' %}" class="d-block mx-lg-auto img-fluid rounded img-raised shadow-lg" alt="Bootstrap Themes Raised Image" width="700" height="500" loading="lazy">
+                      </div>
+                      <div class="col-lg-6">
+                        <h1 class="display-5 font-weight-bold lh-1 mb-3 mt-lg-3 mt-2 text-black">Welcome to Wheels Talk America!</h1>
+                        <p class="lead text-white">At Wheels Talk America, we're your one-stop destination for all things automotive. 
+                            Whether you're in the market for a new car, looking for expert car reviews, or seeking the best 
+                            deals at dealerships across the United States, you've come to the right place.</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+                <div id="imageswall" style="background:transparent">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h1 class="h1-seo pt-5 font-weight-bold text-black">Explore our branches to make informed decisions about your next
+                                    car purchase.</h1>
+                                <p class="lead">With branches in every state, we're your local source for global car insights. 
+                                    Our dealerships offer the best of both worlds: the personal touch of a neighborhood business 
+                                    with the resources of a nationwide network.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Add a dealer table here -->
+                <div class="main" style="background:transparent">
+                    <div class="section section-table" id="imageswall" style="background:transparent">
+                        <div class="container" style="background:transparent">
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table" id="table" data-filter-control="true">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="id">ID</th>
+                                                <th data-field="name">Dealer Name</th>
+                                                <th data-field="city">City</th>
+                                                <th data-field="address">Address</th>
+                                                <th data-field="zip">Zip</th>
+                                                <th data-field="state" data-filter-control="select">State</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for dealer in dealerships %}
+                                            <tr>
+                                                <td>{{ dealer.id }}</td>
+                                                {% comment %} <td><a
+                                                        href="{% url 'djangoapp:dealer_details' dealer.id %}">{{ dealer.full_name }}</a></td> {% endcomment %}
+                                                <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{ dealer.full_name }}</a></td>
+                                                <td>{{ dealer.city }}</td>
+                                                <td>{{ dealer.address }}</td>
+                                                <td>{{ dealer.zip }}</td>
+                                                <td>{{ dealer.state }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer footer-default text-black position-absolute" style="width:100%; left: 0">
+                    <div class="container">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'djangoapp:index' %}">
+                                        <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px"
+                                            height="auto">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'djangoapp:about' %}">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'djangoapp:contact' %}">
+                                        Contact
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright mt-2" id="copyright">
+                            &copy;
+                            <script>
+                                document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                            </script>, Copyright:
+                            <a href="https://www.linkedin.com/in/jephmari/" target="_blank">WheelsTalkAmerica.com</a>. Coded by
+                            <a href="https://www.linkedin.com/in/jephmari/" target="_blank">WTA Group</a>.
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
     <script>
-        $(function() {
-          $('#table').bootstrapTable()
+        $(function () {
+            $('#table').bootstrapTable()
         })
     </script>
+    <script src="{% static 'assets/js/core/popper.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="{% static 'assets/js/plugins/bootstrap-switch.js' %}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{% static 'assets/js/plugins/nouislider.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="{% static 'assets/js/plugins/bootstrap-datepicker.js' %}" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{% static 'assets/js/now-ui-kit.js' %}" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            // the body of this function is in assets/js/now-ui-kit.js
+            nowuiKit.initSliders();
+        });
+
+        function scrollToDownload() {
+
+            if ($('.section-download').length != 0) {
+                $("html, body").animate({
+                    scrollTop: $('.section-download').offset().top
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+
 </html>

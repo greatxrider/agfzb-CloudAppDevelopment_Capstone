@@ -2,18 +2,23 @@
 import logging
 import json
 import random
+from datetime import datetime
+from django.core.mail import send_mail
 from django.shortcuts import render
+from django.template.loader import render_to_string
+from django.http import HttpResponseRedirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 # from .models import related models
 # from .restapis import related methods
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from datetime import datetime
 from . import restapis
 from .models import CarModel, CarMake
+from .forms import ContactForm
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -31,33 +36,53 @@ def about(request):
 # Create a `contact` view to return a static contact page
 def contact(request):
     """contact page"""
-    context = {}
-    if request.method == "GET":
-        return render(request, 'djangoapp/contact.html', context)
-
-
-# Create a `login_request` view to handle sign in request
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        
+        if form.is_valid():
+            name = form.cleaned_data['name']            
+            email = form.cleaned_data['email']
+            content = form.cleaned_data['content']
+            
+            html = render_to_string('djangoapp/emails/contactform.html', {
+                'name':name, 
+                'email':email, 
+                'content':content
+            })
+            
+            send_mail('The contact form subject', 'This is the message','noreply@codewithstein.com', ['daligdigjeph09@gmail.com'], html_message=html)
+            
+            return redirect('djangoapp:contact')
+            # return redirect(reverse('djangoapp:contact'))
+        else:
+            print('the form was not valid')
+    else:
+        form = ContactForm()
+    return render(request, 'djangoapp/contact.html', { 'form':form })
+    
+    
 def login_request(request):
-    """the login page"""
+    """Handle sign-in requests."""
     context = {}
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["psw"]
-        user = authenticate(username=username, password=password)
+        username = request.POST.get("username")
+        password = request.POST.get("psw")
+        # Authenticate the user
+        user = authenticate(request, username=username, password=password)
         if user is not None:
+            # Login the user
             login(request, user)
-            return redirect("djangoapp:index")
+            return HttpResponseRedirect(reverse("djangoapp:index"))
         else:
             context["message"] = "Invalid username or password."
-    else:
-        return render(request, "djangoapp/index.html", context)
+    return render(request, "djangoapp/index.html", context)
 
 
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
     """the logout page"""
     logout(request)
-    return redirect("djangoapp:index")
+    return HttpResponseRedirect(reverse("djangoapp:index"))
 
 
 # Create a `registration_request` view to handle sign up request
@@ -123,7 +148,10 @@ def get_dealer_details(request, dealer_id):
         api_key = 'aa1cPksgn9BNNMDnmfXSNi3Zw1uVVGBW96LwiOhIhS9p'
         reviews = restapis.get_dealer_by_id_from_cf(url, dealerId=dealer_id, api_key=api_key)
         # Add dealer's reviews to the context dictionary 
-        context['reviews'] = reviews
+        context["reviews"] = reviews
+        context["dealer_id"] = dealer_id
+        if reviews == []:
+           context["reviews"] = "[]"
         # Return a list of dealer short name
         return render(request, 'djangoapp/dealer_details.html', context)
 
@@ -154,15 +182,15 @@ def add_review(request, dealer_id):
             url = "https://reviewforcarproj-imq6imauja-uc.a.run.app/api/post_review"
             review["time"] = datetime.utcnow().isoformat()
             review["id"] = random.randint(1, 1000)
-            review["name"] = user.username
+            review["name"] = user.first_name + " " + user.last_name
             review["dealership"] = dealer_id
             review["review"] = request.POST["content"]
             # review["purchase"] = bool(request.POST.get("purchasecheck"))
             raw_purchase = request.POST.get("purchasecheck")
             if raw_purchase:
-                review["purchase"] = raw_purchase.capitalize() == "True"
+                review["purchase"] = True
             else:
-                review["purchase"] = False
+                review["purchase"] = "false"
             review["purchase_date"] = request.POST["purchasedate"]
             review["car_make"] = request.POST.get("carmake")
             review["car_model"] = request.POST.get("carmodel")

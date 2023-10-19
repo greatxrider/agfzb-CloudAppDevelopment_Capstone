@@ -30,6 +30,10 @@ APPEND_SLASH = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "agfzb-cloudappdevelopment-capstone-imq6imauja-uc.a.run.app"]
 
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '98936065a0fee5'
+EMAIL_HOST_PASSWORD = 'a5cf3b47f30f14'
+EMAIL_PORT = '2525'
 
 # Application definition
 
@@ -123,6 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = [
+    os.path.join(BASE_DIR, 'media')
+]

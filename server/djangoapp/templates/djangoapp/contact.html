@@ -1,191 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% load static %}
-        <title>Contact Us</title>
-        <meta name="description" content="Your page's concise summary goes here.">
-        <meta name="keywords" content="keyword1, keyword2, keyword3">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="{% static 'admin/css/style.css' %}" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            .jumbotron {
-                margin-bottom: 0px;
-            }
 
-            .navbar {
-                border-bottom: thin solid lightgray;
-                margin-bottom: 20px;
-            }
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %} ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-            #logo {
-                width: 200px;
-            }
-            
-            .nav-item {
-                font-size: 20px;
-            }
+    <meta name="description" content="Your page's concise summary goes here.">
+    <meta name="keywords" content="keyword1, keyword2, keyword3">
+    <title>WheelsTalk America</title>
 
-            .map-container-google-1 {
-                height: 550px;
-            }
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- CSS Files -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/now-ui-kit.css' %}" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
+</head>
 
-            #iframe {
-                border:0;
-            }
-        </style>
-    </head>    
-    <body>
-        {% load static %}
-        <!--Add a nav bar here -->
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
-            <!-- Brand/logo -->
-            <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
-                <img id="logo" src="{% static 'colorlogo.png' %}" alt="logo" width="200px" height="80px">
-            </a>
-        </nav>
-        {% load static %}
-        <section class="ftco-section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="wrapper">
-                            <div class="row no-gutters mb-5">
-                                <div class="col-md-7">
-                                    <div class="contact-wrap w-100 p-md-5 p-4">
-                                        <h3 class="mb-4">Contact Us</h3>
-                                        <div id="form-message-warning" class="mb-4"></div>
-                                        <div id="form-message-success" class="mb-4">Your message was sent, thank you!</div>
-                                        <form method="post" id="contactForm" name="contactForm" class="contactForm">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="label" for="name">Full Name</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="name"
-                                                               id="name"
-                                                               placeholder="Name">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="label" for="email">Email Address</label>
-                                                        <input type="email"
-                                                               class="form-control"
-                                                               name="email"
-                                                               id="email"
-                                                               placeholder="Email">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="label" for="subject">Subject</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               name="subject"
-                                                               id="subject"
-                                                               placeholder="Subject">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="label" for="#">Message</label>
-                                                        <textarea name="message"
-                                                                  class="form-control"
-                                                                  id="message"
-                                                                  cols="30"
-                                                                  rows="4"
-                                                                  placeholder="Message">
-                                                        </textarea>
-                                                    </div>
-                                                </div>
-                                                {% csrf_token %}
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="submit" value="Send Message" class="btn btn-primary">
-                                                        <div class="submitting"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 d-flex align-items-stretch">
-                                    <div id="map">
-										<svg class="bd-placeholder-img card-img-top" width="100%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-											<title>Placeholder</title>
-											<rect width="100%" height="100%" fill="#868e96"></rect>
-											<div id="map-container-google-1" class="z-depth-1-half map-container">
-												<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.8609050213254!2d-73.9997819186036!3d40.74308608746747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bb65ffb4b7%3A0xfb6f9cef91401b93!2sEvents%20Coverage%20and%20Photography!5e0!3m2!1sen!2sph!4v1694863386084!5m2!1sen!2sph" width="600" height="450" id="iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-											</div>
-										</svg>
-									</div>
-                                </div>
+<body class="index-page sidebar-collapse">
+    {% load static %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg btn-primary fixed-top navbar-transparent " color-on-scroll="400">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand black" href="{% url 'djangoapp:index' %}">
+                    <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px" height="auto">
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar top-bar"></span>
+                    <span class="navbar-toggler-bar middle-bar"></span>
+                    <span class="navbar-toggler-bar bottom-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Contact<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation"
+                data-nav-image="{% static 'assets/img/blurred-image-1.jpg' %}">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>
+                                {{ user.first_name }}({{ user.username }})
+                            </p>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="#"
+                            target="_blank">
+                            <i class="fab fa-twitter"></i>
+                            <p class="d-lg-none d-xl-none">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="#"
+                            target="_blank">
+                            <i class="fab fa-facebook-square"></i>
+                            <p class="d-lg-none d-xl-none">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
+                            href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <p class="d-lg-none d-xl-none">Instagram</p>
+                        </a>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">
+                            <i class="now-ui-icons business_badge"></i>
+                            <p>Login</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'djangoapp:registration' %}" class="nav-link">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>Sign-Up</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom"
+                            href="https://www.linkedin.com/in/jephmari/" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                            <p class="d-lg-none d-xl-none">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom"
+                            href="https://www.linkedin.com/in/jephmari/" target="_blank">
+                            <i class="fab fa-facebook-square"></i>
+                            <p class="d-lg-none d-xl-none">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom"
+                            href="https://www.linkedin.com/in/jephmari/" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <p class="d-lg-none d-xl-none">Instagram</p>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <!-- Sart Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" data-background-color="orange">
+                <form class="form" method="post" action="{% url 'djangoapp:login' %}">
+                    {% csrf_token %}
+                    <div class="card-header text-center">
+                        <h3 class="card-title title-up">Log In</h3>
+                        <div class="social-line">
+                            <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px"
+                                height="auto">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group no-border">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons users_single-02"></i>
+                                </span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="dbox w-100 text-center">
-                                        <div class="icon d-flex align-items-center justify-content-center">
-                                            <span class="fa fa-map-marker"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                <span>Address:</span> 198 W 21st St #721, New York, NY 10010, United States
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="dbox w-100 text-center">
-                                        <div class="icon d-flex align-items-center justify-content-center">
-                                            <span class="fa fa-phone"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                <span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="dbox w-100 text-center">
-                                        <div class="icon d-flex align-items-center justify-content-center">
-                                            <span class="fa fa-paper-plane"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                <span>Email:</span> <a href="mailto:info@yoursite.com">cardealership@gmail.com</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="dbox w-100 text-center">
-                                        <div class="icon d-flex align-items-center justify-content-center">
-                                            <span class="fa fa-globe"></span>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                <span>Website</span> <a href="#">cardealership.com</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <input type="text" class="form-control" placeholder="Username..." name="username">
+                        </div>
+                        <div class="input-group no-border">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons text_caps-small"></i>
+                                </span>
                             </div>
+                            <input type="password" class="form-control" placeholder="Password..." name="psw">
+                        </div>
+                        <p>{{ message }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-neutral btn-round btn-lg" type="submit">Login</button>
+                        <div class="pull-left">
+                            <h6>
+                                <a href="{% url 'djangoapp:registration' %}" class="link">Create Account</a>
+                            </h6>
+                        </div>
+                        <div class="pull-right">
+                            <h6>
+                                <a href="#pablo" class="link">Need Help?</a>
+                            </h6>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--  End Modal -->
+    <!-- Start Wrapper -->
+    <div class="wrapper">
+        <div class="page-header clear-filter" filter-color="orange">
+            <div class="page-header-image" data-parallax="true"
+                style="background-image: url('{% static '/assets/img/contactus.jpg' %}');">
+            </div>
+            <div class="container mt-5">
+                <div class="content-center brand">
+                    <h2 class="title">Want to work with us?</h2>
+                    <p class="description">Your project is very important to us.</p>
+                    <!-- <div class="row card-plain" data-background-color="white">
+                        <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
+                            <div class="input-group input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons users_circle-08"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="First Name...">
+                            </div>
+                            <div class="input-group input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons ui-1_email-85"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Email...">
+                            </div>
+                            <div class="textarea-container">
+                                <textarea class="form-control" name="name" rows="4" cols="80"
+                                    placeholder="Type a message..."></textarea>
+                            </div>
+                            <div class="send-button">
+                                <button href="#pablo" class="btn btn-primary btn-round btn-block btn-lg">Send
+                                    Message</button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row card-plain" data-background-color="white">
+                        <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
+                            <form method="post" action=".">
+                                {% csrf_token %}
+                                <div class="input-group input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="{{ form.name.name }}"
+                                        id="{{ form.name.id_for_label }}" value="" placeholder="First Name...">
+                                </div>
+                                <div class="input-group input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="now-ui-icons ui-1_email-85"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="{{ form.email.name }}"
+                                        id="{{ form.email.id_for_label }}" value="" placeholder="Email...">
+                                </div>         
+                                {{ form.content }}
+                                <script>
+                                    function notif() {
+                                        alert("Thank you for your message! We will get back to you as soon as possible.");
+                                    }
+                                </script>
+                                <div class="send-button">
+                                    <button class="btn btn-primary btn-round btn-block btn-lg" onclick="notif()">Send Message</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        {% load static %}
-        <script src="{% static 'contact/js/jquery.min.js' %}"></script>
-        <script src="{% static 'contact/js/popper.js' %}"></script>
-        <script src="{% static 'contact/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'contact/js/jquery.validate.min.js' %}"></script>
-        <script src="{% static 'contact/js/main.js' %}"></script>
-    </body>
+        </div>
+    </div>
+    <!-- End Wrapper -->
+    <footer class="footer footer-default">
+        <div class=" container ">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'djangoapp:index' %}">
+                            <img id="logo" src="{% static 'logo-no-background.png' %}" alt="logo" width="200px"
+                                height="auto">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'djangoapp:about' %}">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'djangoapp:contact' %}">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright mt-2" id="copyright">
+                &copy;
+                <script>
+                    document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                </script>, Copyright:
+                <a href="https://www.linkedin.com/in/jephmari/" target="_blank">WheelsTalkAmerica.com</a>. Coded by
+                <a href="https://www.linkedin.com/in/jephmari/" target="_blank">WTA Group</a>.
+            </div>
+        </div>
+    </footer>
+    <!--   Core JS Files   -->
+    <script src="{% static 'assets/js/core/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/popper.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="{% static 'assets/js/plugins/bootstrap-switch.js' %}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{% static 'assets/js/plugins/nouislider.min.js' %}" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="{% static 'assets/js/plugins/bootstrap-datepicker.js' %}" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{% static 'assets/js/now-ui-kit.js' %}" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            // the body of this function is in assets/js/now-ui-kit.js
+            nowuiKit.initSliders();
+        });
+
+        function scrollToDownload() {
+
+            if ($('.section-download').length != 0) {
+                $("html, body").animate({
+                    scrollTop: $('.section-download').offset().top
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+
 </html>
