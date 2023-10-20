@@ -3,6 +3,7 @@
 
 <head>
     {% load static %}
+    {% csrf_token %}
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
     <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %} ">
@@ -123,6 +124,7 @@
                 </ul>
                 {% else %}
                 <ul class="navbar-nav">
+                    {% csrf_token %}
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">
                             <i class="now-ui-icons business_badge"></i>
@@ -164,6 +166,7 @@
     <!-- End Navbar -->
     <!-- Sart Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        {% csrf_token %}
         <div class="modal-dialog">
             <div class="modal-content" data-background-color="orange">
                 <form class="form" method="post" action="{% url 'djangoapp:login' %}">

@@ -3,6 +3,7 @@
 
 <head>
     {% load static %}
+    {% csrf_token %}
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
     <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %} ">
@@ -105,6 +106,7 @@
     <!-- End Navbar -->
     <!-- Sart Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        {% csrf_token %}
         <div class="modal-dialog">
             <div class="modal-content" data-background-color="orange">
                 <form class="form" method="post" action="{% url 'djangoapp:login' %}">
@@ -154,6 +156,7 @@
     </div>
     <!--  End Modal -->
     <div class="page-header clear-filter" filter-color="orange">
+        {% csrf_token %}
         <div class="page-header-image" style="background-image:url('{% static '/assets/img/signup.jpg' %}');"></div>
         <div class="content">
             <div class="container">

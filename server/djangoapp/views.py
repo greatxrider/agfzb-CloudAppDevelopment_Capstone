@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_protect
 
 # from .models import related models
 # from .restapis import related methods
@@ -61,6 +62,7 @@ def contact(request):
     return render(request, 'djangoapp/contact.html', { 'form':form })
     
     
+@csrf_protect
 def login_request(request):
     """Handle sign-in requests."""
     context = {}
@@ -78,6 +80,7 @@ def login_request(request):
     return render(request, "djangoapp/index.html", context)
 
 
+@csrf_protect
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
     """the logout page"""
@@ -85,6 +88,7 @@ def logout_request(request):
     return HttpResponseRedirect(reverse("djangoapp:index"))
 
 
+@csrf_protect
 # Create a `registration_request` view to handle sign up request
 def registration_request(request):
     """the registration page"""
