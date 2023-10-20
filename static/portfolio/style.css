@@ -1,0 +1,401 @@
+.body {
+    padding: 0;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+#maincontainer {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbarwithlogo {
+    display: grid;
+    grid-template-columns: 0.6fr 6fr;
+    grid-template-rows: 1fr;
+    height: 18vh;
+    align-items: center;
+}
+
+.logo {
+    background-color: #2965bb;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 11rem;
+}
+
+.jmd {
+    color: white;
+    font-size: 3rem;
+}
+
+.navcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: gray;
+    display: flex;
+    position: relative;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-end;
+    height: 5rem;
+    min-width: 1rem;
+    min-height: 2rem;
+}
+
+.navbar-items {
+    display: flex;
+    color: white;
+    font-size: 1.1rem;
+    margin: 1rem;
+}
+
+.Home {
+    display: grid;
+    grid-template-columns: 5fr 5fr 2fr;
+    grid-template-rows: 1fr;
+    height: 80vh;
+}
+
+.Introduction {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    color: #6b6b70;
+    position: relative;
+    bottom: 3rem;
+    left: 1.4rem;
+}
+
+#introduction-container {
+    margin-top: 120px;
+    z-index: 2;
+}
+
+.salutation {
+    font-size: 31px;
+}
+
+.content {
+    font-size: 25px;
+}
+
+.name,
+.period {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.period {
+    color: #2965bb;
+}
+
+.Jephmari {
+    position: relative;
+    grid-area: 1/2/1/2;
+    height: 35rem;
+    z-index: 5;
+    margin-left: 15%;
+}
+
+.circle {
+    left: 50%;
+    top: 50%;
+    height: 30rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    margin-left: 62%;
+    margin-top: 14%;
+}
+
+.windows {
+    position: absolute;
+    height: 35rem;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    margin-left: 45%;
+    margin-top: 12%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .circle {
+        animation: circle-spin infinite 20s linear;
+    }
+}
+
+@keyframes circle-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+.headboard {
+    position: absolute;
+    height: 40rem;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin-left: 65%;
+    margin-top: 7%;
+    opacity: 0.05;
+    transform: scaleX(-1);
+}
+
+.black-border {
+    border: 1px solid lightgray;
+}
+
+.programs {
+    position: absolute;
+    height: 25rem;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    margin-left: 59%;
+    margin-top: 15%;
+    opacity: 0.1;
+}
+
+.aboutme {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.secondpage {
+    position: relative;
+    grid-area: 1/2/1/2;
+    height: 35rem;
+    z-index: 5;
+    margin-left: 15%;
+    margin-top: 20%;
+}
+
+.programs2 {
+    position: absolute;
+    height: 25rem;
+    top: 0;
+    left: 0;
+    margin-top: 57%;
+    margin-left: 58%;
+    z-index: 4;
+    opacity: 0.1;
+}
+
+#image-container {
+    display: flex;
+}
+
+#image-container .p-0 {
+    margin-left: 20px;
+    padding: 0;
+}
+
+.travelpic1 {
+    width: 10.40rem; /* Set the desired width for the images */
+    height: auto; /* Allow the images to scale proportionally based on width */
+}
+
+.travelpic2 {
+    width: 10.40rem; /* Set the desired width for the images */
+    height: auto; /* Allow the images to scale proportionally based on width */
+}
+
+.travelpic3 {
+    width: 12.15rem; /* Set the desired width for the images */
+    height: auto; /* Allow the images to scale proportionally based on width */
+}
+
+.travelpic4 {
+    width: 10.70rem; /* Set the desired width for the images */
+    height: auto; /* Allow the images to scale proportionally based on width */
+}
+
+.travelpic5 {
+    width: 10.70rem; /* Set the desired width for the images */
+    height: auto; /* Allow the images to scale proportionally based on width */
+}
+
+.travelpic6 {
+    width: 10.6rem; /* Set the desired width for the images */
+    height: auto; /* Allow the images to scale proportionally based on width */
+}
+
+.travelpic7 {
+    width: 25rem; /* Set the desired width for the images */
+    height: auto; /* Allow the images to scale proportionally based on width */
+}
+
+.skillset {
+    color: deepskyblue;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.role {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.skillset-period {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2965bb;
+}
+
+.skillset-story {
+    width: 90%;
+}
+
+.skillset-story-content {
+    font-size: 20px;
+}
+
+.skillset-title {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    color: #6b6b70;
+}
+
+.rounded-box {
+    width: 568.719px;
+    height: 285px;
+    background-color: #62afd3; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rounded-box2 {
+    width: auto;
+    height: 285px;
+    background-color: #62afd3;
+    border-radius: 20px;
+}
+
+.boxcontainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.pl-content {
+    font-size: 20px;
+    width: 568.72px;
+    font-weight: bold;
+    color: #6b6b70;
+}
+
+#programminglanguages-container {
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.stack-content {
+    font-size: 20px;
+    font-weight: bold;
+    color: #6b6b70;
+}
+
+.plogo {
+    width: auto;
+    height: 130px;
+}
+
+.ptechnologies {
+    width: auto;
+    height: 60px;
+}
+
+.rounded-box3 {
+    width: 600px;
+    height: 185px;
+    background-color: #62afd3; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.boxcontainer3 {
+    color: white;
+}
+
+.school-content {
+    font-size: 20px;
+    font-weight: bold;
+    color: #6b6b70;
+}
+
+#school-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.pschool {
+    width: auto;
+    height: 100px;
+}
+
+.school-story-content {
+    font-size: 20px;
+}
+
+.rounded-box4 {
+    width: auto;
+    height: auto;
+    background-color: #62afd3; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.certification {
+    color: deepskyblue;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.school-story-content {
+    width: 80%;
+}
+
+.pcertification {
+    width: auto;
+    height: 80px;
+}
+
+.boxcontainer4 {
+    color: white;
+}
+
+.body {
+    background: #3537cd;
+    background: -moz-linear-gradient(left, #3537cd 0%, #bdc7d3 100%);
+    background: -webkit-linear-gradient(left, #3537cd 0%, #bdc7d3 100%);
+    background: linear-gradient(to right, #3537cd 0%, #bdc7d3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3537cd', endColorstr='#bdc7d3',GradientType=1 );                      
+}

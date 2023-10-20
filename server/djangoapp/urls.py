@@ -25,5 +25,9 @@ urlpatterns = [
     path('dealer/<int:dealer_id>/', views.get_dealer_details, name='dealer_details'),
     # path for add a review view
     path('add_review/<int:dealer_id>/', views.add_review, name='add_review'),
+] 
+# + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     
-] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
