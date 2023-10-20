@@ -24,11 +24,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECRET_KEY = 'ao5z(o(z@cvzodm99d32jkxa5e8a1!q_4sqss5-a%n6tg$#h$+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 APPEND_SLASH = True
 
 ALLOWED_HOSTS = ["*","localhost", "127.0.0.1", "agfzb-cloudappdevelopment-capstone-imq6imauja-uc.a.run.app"]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://agfzb-cloudappdevelopment-capstone-imq6imauja-uc.a.run.app",
+]
 
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
 EMAIL_HOST_USER = '98936065a0fee5'
