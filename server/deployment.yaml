@@ -20,11 +20,9 @@ spec:
         run: dealership
     spec:
       containers:
-      - image: us.icr.io/$MY_NAMESPACE/dealership:latest
+      - image: greatxrider/dealership:latest
         imagePullPolicy: Always
         name: dealership
         ports:
-        - containerPort: 8000
+        - containerPort: 80
           protocol: TCP
-      restartPolicy: Always
-      
