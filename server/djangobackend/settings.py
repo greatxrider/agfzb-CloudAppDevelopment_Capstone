@@ -30,7 +30,7 @@ APPEND_SLASH = True
 
 ALLOWED_HOSTS = ["*","localhost", "127.0.0.1", "agfzb-cloudappdevelopment-capstone-imq6imauja-uc.a.run.app"]
 
-CORS_ALLOWED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = [
     "https://agfzb-cloudappdevelopment-capstone-imq6imauja-uc.a.run.app",
 ]
 
